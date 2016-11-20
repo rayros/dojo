@@ -3,8 +3,8 @@ define([
 	'../errors/RequestTimeoutError',
 	'../errors/CancelError',
 	'../_base/array',
-	'../has!host-browser?../_base/window:',
-	'../has!host-browser?dom-addeventlistener?:../on:'
+	'../_base/window',
+	'../on'
 ], function(util, RequestTimeoutError, CancelError, array, win, on){
 	// avoid setting a timer per request. It degrades performance on IE
 	// something fierece if we don't use unified loops.
