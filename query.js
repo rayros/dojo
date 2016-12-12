@@ -1,4 +1,4 @@
-define(["./_base/kernel", "./has", "./dom", "./on", "./_base/array", "./_base/lang", "./selector/_loader", "./selector/_loader"],
+define(["./_base/kernel", "./has", "./dom", "./on", "./_base/array", "./_base/lang", "./selector/_loader", "./selector/lite"],
 	function(dojo, has, dom, on, array, lang, loader, defaultEngine){
 
 	"use strict";
@@ -7,7 +7,7 @@ define(["./_base/kernel", "./has", "./dom", "./on", "./_base/array", "./_base/la
 		// test to see if we can extend an array (not supported in old IE)
 		return lang.delegate([], {length: 1}).length == 1 && !has("bug-for-in-skips-shadowed");
 	});
-	
+
 	var ap = Array.prototype, aps = ap.slice, apc = ap.concat, forEach = array.forEach;
 
 	var tnl = function(/*Array*/ a, /*dojo/NodeList?*/ parent, /*Function?*/ NodeListCtor){
@@ -165,7 +165,7 @@ define(["./_base/kernel", "./has", "./dom", "./on", "./_base/array", "./_base/la
 		}
 		var nodeArray = (array && "length" in array) ? array : arguments;
 		if(isNew || !nodeArray.sort){
-			// make sure it's a real array before we pass it on to be wrapped 
+			// make sure it's a real array before we pass it on to be wrapped
 			var target = isNew ? this : [],
 				l = target.length = nodeArray.length;
 			for(var i = 0; i < l; i++){
@@ -188,8 +188,8 @@ define(["./_base/kernel", "./has", "./dom", "./on", "./_base/array", "./_base/la
 		};
 		return nodeArray;
 	};
-	
-	var nl = NodeList, nlp = nl.prototype = 
+
+	var nl = NodeList, nlp = nl.prototype =
 		has("array-extensible") ? [] : {};// extend an array if it is extensible
 
 	// expose adapters and the wrapper as private functions
